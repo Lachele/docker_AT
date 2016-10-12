@@ -5,8 +5,8 @@
 
 ##
 ## Change these variables as desired
-IMAGE='ambertools:16'
-#IMAGE='lachele/ambertools:16'
+#IMAGE='ambertools:16'
+IMAGE='lachele/ambertools'
 WORKDIR=$(pwd) # use an absolute path if you change this
 USER=$UID  # your user id
 GROUP=${GROUPS[0]}  # your group id
