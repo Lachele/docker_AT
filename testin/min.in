@@ -1,0 +1,7 @@
+ # Control section
+ &cntrl
+  imin = 1, ntpr = 1, 
+  ntb = 0, ntp = 0, 
+  maxcyc = 10, ncyc = 10, 
+  cut = 12
+ /

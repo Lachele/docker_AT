@@ -1,0 +1,81 @@
+source leaprc.protein.ff14SB
+source leaprc.GLYCAM_06j-1
+
+## Testing derivatives and some terminals.
+##
+##   See definitions in the script that created this file for details.
+##   Using a 6-linked DGlcpb 
+##
+# set 1
+  m1 = sequence { TBT 6GB MEX }
+  set m1.2.C6 charge +0.243
+  charge m1
+  saveamberparm m1 testout/TBT-6GB-MEX.parm7 testout/TBT-6GB-MEX.rst7
+
+# set 2
+  m2 = sequence { ZOLT 6GB ACX }
+  set m2.2.C6 charge +0.290
+  charge m2
+  saveamberparm m2 testout/ZOLT-6GB-ACX.parm7 testout/ZOLT-6GB-ACX.rst7
+
+# set 3
+  m3 = sequence { ZOLS 6GB SO3 }
+  set m3.2.O6 charge -0.427
+  charge m3
+  saveamberparm m3 testout/ZOLS-6GB-SO3.parm7 testout/ZOLS-6GB-SO3.rst7
+
+## Testing residues made for linking to proteins.
+##
+##   Testing RES-ALA-RES-ALA-RES to ensure that we have tried a decent
+##       set of linkage environments.
+##   See definitions in the script that created this file for details.
+##
+# set 1 -- OLT
+  mOLT = sequence { NOLT ALA OLT ALA COLT  }
+  set mOLT tail mOLT.1.OG1
+  mOLT = sequence { mOLT 0GB }
+  set mOLT tail mOLT.3.OG1
+  mOLT = sequence { mOLT 0GB }
+  set mOLT tail mOLT.5.OG1
+  mOLT = sequence { mOLT 0GB }
+  impose mOLT { 1 2 3 4 5 } { { "N" "CA" "C" "N" 90.0 } }
+  check mOLT
+  saveamberparm mOLT testout/OLT_All.parm7 testout/OLT_All.rst7
+
+# set 2 -- OLS
+  mOLS = sequence { NOLS ALA OLS ALA COLS  }
+  set mOLS tail mOLS.1.OG
+  mOLS = sequence { mOLS 0GB }
+  set mOLS tail mOLS.3.OG
+  mOLS = sequence { mOLS 0GB }
+  set mOLS tail mOLS.5.OG
+  mOLS = sequence { mOLS 0GB }
+  impose mOLS { 1 2 3 4 5 } { { "N" "CA" "C" "N" 90.0 } }
+  check mOLS
+  saveamberparm mOLS testout/OLS_All.parm7 testout/OLS_All.rst7
+
+# set 3 -- OLP
+  mOLP = sequence { NOLP ALA OLP ALA COLP  }
+  set mOLP tail mOLP.1.OD1
+  mOLP = sequence { mOLP 0GB }
+  set mOLP tail mOLP.3.OD1
+  mOLP = sequence { mOLP 0GB }
+  set mOLP tail mOLP.5.OD1
+  mOLP = sequence { mOLP 0GB }
+  impose mOLP { 1 2 3 4 5 } { { "N" "CA" "C" "N" 90.0 } }
+  check mOLP
+  saveamberparm mOLP testout/OLP_All.parm7 testout/OLP_All.rst7
+
+# set 4 -- NLN
+  mNLN = sequence { NNLN ALA NLN ALA CNLN  }
+  set mNLN tail mNLN.1.ND2
+  mNLN = sequence { mNLN 0GB }
+  set mNLN tail mNLN.3.ND2
+  mNLN = sequence { mNLN 0GB }
+  set mNLN tail mNLN.5.ND2
+  mNLN = sequence { mNLN 0GB }
+  impose mNLN { 1 2 3 4 5 } { { "N" "CA" "C" "N" 90.0 } }
+  check mNLN
+  saveamberparm mNLN testout/NLN_All.parm7 testout/NLN_All.rst7
+
+quit
